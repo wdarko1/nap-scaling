@@ -22,21 +22,21 @@ spec:
                 limits:
                     cpu: 500m
                     memory: 200Mi
-            imagePullPolicy: Always
-            ports:
-            - name: http
-              containerPort: 80
-              protocol: TCP
-            livenessProbe:
+              imagePullPolicy: Always
+              ports:
+              - name: http
+                containerPort: 80
+                protocol: TCP
+              livenessProbe:
                 httpGet:
-                path: /stats
-                port: http
-            readinessProbe:
+                  path: /stats
+                  port: http
+              readinessProbe:
                 httpGet:
-                path: /stats
-                port: http
+                  path: /stats
+                  port: http
             nodeSelector:
-                karpenter.sh/nodepool: default-spot
+              karpenter.sh/nodepool: default-spot
             tolerations:
             - key: karpenter.sh/capacity-type
               operator: Equal
@@ -49,5 +49,3 @@ spec:
               labelSelector:
                 matchLabels:
                   app: serverloader
-                matchLabelKeys:
-                - pod-template-hash
