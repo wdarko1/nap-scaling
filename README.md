@@ -22,12 +22,19 @@
 
 ## Test
 
-1. Run a load test against the `/workout` endpoint. You can use [Azure Load Testing](https://learn.microsoft.com/en-us/azure/load-testing/quickstart-create-and-run-load-test?tabs=portal) or `hey`.
+1. After deployment observe the node claims being created
+    ```bash
+    kubectl get nodeclaims -o wide -w
+    ```
+1. Verify that the deployment is available and running
+    ```bash
+    kubectl get deployment serverloader -n test -w
+    ```
+1. When the deployment is running, run a load test against the `/workout` endpoint. You can use [Azure Load Testing](https://learn.microsoft.com/en-us/azure/load-testing/quickstart-create-and-run-load-test?tabs=portal) or `hey`.
+    ```bash
+    hey -n 240000 -c 300 http://${SERVICE_IP}/workout"
+    ```
 1. Observe Node Auto Provisioning adding more nodes to the cluster.
     ```bash
     kubectl get events -n test --field-selector source=karpenter -w
-    ```
-1. Observe the node claims being created
-    ```bash
-    kubectl get nodeclaims
     ```

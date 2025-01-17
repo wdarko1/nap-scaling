@@ -9,17 +9,17 @@ spec:
     kind: Deployment
     name: serverloader
   minReplicas: 2
-  maxReplicas: 20
+  maxReplicas: 100
   metrics:
   - type: Resource
     resource:
       name: cpu
       target:
         type: Utilization
-        averageUtilization: 50
+        averageUtilization: 10
   - type: Resource
     resource:
       name: memory
       target:
         type: Utilization
-        averageUtilization: 50
+        averageUtilization: 10

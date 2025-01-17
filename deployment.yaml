@@ -17,11 +17,11 @@ spec:
               image: ghcr.io/sabbour/aks-scaling-nap-demo:main
               resources:
                 requests:
-                    cpu: 500m
-                    memory: 200Mi
+                    cpu: 800m
+                    memory: 400Mi
                 limits:
-                    cpu: 500m
-                    memory: 200Mi
+                    cpu: 800m
+                    memory: 400Mi
               imagePullPolicy: Always
               ports:
               - name: http
@@ -45,7 +45,7 @@ spec:
             topologySpreadConstraints:
             - maxSkew: 1
               topologyKey: topology.kubernetes.io/zone
-              whenUnsatisfiable: DoNotSchedule
+              whenUnsatisfiable: ScheduleAnyway
               labelSelector:
                 matchLabels:
                   app: serverloader
