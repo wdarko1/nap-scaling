@@ -77,6 +77,7 @@ az group create -n ${CLUSTER_RG} -l ${LOCATION}
 echo "Creating an AKS Automatic cluster ${CLUSTER_NAME} with Kubernetes version ${K8S_VERSION}"
 az aks create -n ${CLUSTER_NAME} -g ${CLUSTER_RG} \
 --sku Automatic \
+--location ${LOCATION} \
 --kubernetes-version ${LATEST_K8S_VERSION}
 
 # Wait until the provisioning state of the cluster is not updating
