@@ -1,7 +1,7 @@
 apiVersion: karpenter.sh/v1beta1
 kind: NodePool
 metadata:
-  name: default-spot
+  name: default
   annotations:
     kubernetes.io/description: General purpose AMD46 NodePool for generic workload with Spot capacity
 spec:
