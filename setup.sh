@@ -113,7 +113,7 @@ echo "========================================================"
 echo ""
 
 # Apply Kubernetes manifests
-kubectl apply -f nodepool-default-spot.yaml
+kubectl apply -f nodepool-default.yaml
 kubectl apply -f namespace.yaml
 kubectl apply -f deployment.yaml
 kubectl apply -f service.yaml
