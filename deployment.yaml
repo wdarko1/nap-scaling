@@ -40,7 +40,7 @@ spec:
             tolerations:
             - key: karpenter.sh/capacity-type
               operator: Equal
-              value: spot
+              value: on-demand
               effect: NoSchedule
             topologySpreadConstraints:
             - maxSkew: 1
