@@ -1,9 +1,9 @@
-# Azure Kubernetes Service (AKS) scaling demo using AKS Automatic + Spot instances
+# Azure Kubernetes Service (AKS) scaling demo using Node Auto-provisioning
 
 ## Components
 
 1. AKS Automatic cluster
-1. Node Auto Provisioning (NAP) with a spot NodePool
+1. Node Auto Provisioning (NAP) with a default NodePool
 
 ## Setup
 
