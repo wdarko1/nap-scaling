@@ -72,13 +72,25 @@ echo ""
 echo "Creating resource group ${CLUSTER_RG} in ${LOCATION}"
 az group create -n ${CLUSTER_RG} -l ${LOCATION}
 
+echo ""
+echo "========================================================"
+echo "|                  CREATING AKS CLUSTER                |"
+echo "========================================================"
+echo ""
+echo "Features: Container Insights for Logs, Azure CNI Overlay with Cilium, Application Routing"
 
 # Create AKS cluster with the required add-ons and configuration
-echo "Creating an AKS Automatic cluster ${CLUSTER_NAME} with Kubernetes version ${K8S_VERSION}"
+echo "Creating an Azure Kubernetes Service cluster ${CLUSTER_NAME} with Kubernetes version ${K8S_VERSION}"
 az aks create -n ${CLUSTER_NAME} -g ${CLUSTER_RG} \
---sku Automatic \
---location ${LOCATION} \
+--node-provisioning-mode Auto \
+--network-dataplane cilium \
+--network-plugin azure \
+--network-plugin-mode overlay \
 --kubernetes-version ${LATEST_K8S_VERSION}
+
+echo "Tainting the system node pool to prevent workloads from running on it"
+az aks nodepool update --cluster-name ${CLUSTER_NAME} -g ${CLUSTER_RG} -n nodepool1 --node-taints "CriticalAddonsOnly=true:NoSchedule"
+
 
 # Wait until the provisioning state of the cluster is not updating
 echo "Waiting for the cluster to be ready"
