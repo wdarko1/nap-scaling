@@ -2,7 +2,6 @@
 
 ## Components
 
-1. AKS Automatic cluster
 1. Node Auto Provisioning (NAP) with a default NodePool
 
 ## Setup
