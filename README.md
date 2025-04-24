@@ -3,6 +3,8 @@
 ## Components
 
 1. Node Auto Provisioning (NAP) with a default NodePool
+2. Scaling Up with NAP
+3. Single Node Consolidation
 
 File list
 - basic.yaml
