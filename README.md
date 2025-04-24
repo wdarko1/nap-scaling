@@ -35,11 +35,6 @@ wget https://github.com/Azure/aks-node-viewer/releases/download/v0.0.2-alpha/aks
 chmod +x ~/environment/karpenter/bin/aks-node-viewer
 ```
 
-## Exposed endpoints
-
-1. `/workout`: generates long strings and stores them in memory.
-1. `/metrics`: Prometheus metrics.
-1. `/stats`: .NET stats.
 
 ## Create Demo Cluster with NAP Enabled
 
@@ -198,3 +193,6 @@ Alternative view of pods/nodes
 ```
 kubectl -n workshop get pods -o wide
 kubectl get nodeclaims
+
+
+
