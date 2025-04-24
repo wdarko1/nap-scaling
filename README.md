@@ -4,6 +4,13 @@
 
 1. Node Auto Provisioning (NAP) with a default NodePool
 
+File list
+- basic.yaml
+- basic-deploy.yaml
+- singlenode.yaml
+- basic-rightsizing.yaml
+
+
 ## Setup
 
 1. Clone the repository locally.
