@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
     name: serverloader
-    namespace: test
+    namespace: workshop
 spec:
     selector:
         matchLabels:
@@ -12,6 +12,23 @@ spec:
             labels:
                 app: serverloader
         spec:
+          affinity:
+            nodeAffinity:
+              preferredDuringSchedulingIgnoreDuringExecution:
+                - weight: 100
+                  preference:
+                    matchExpressions:
+                      - key: karpenter.sh/capacity-type
+                        operator: In
+                        values: 
+                          - spot
+                - weight: 50
+                  preference:
+                    matchExpressions: 
+                      - key: karpenter.sh/capacity-type
+                        operator: In
+                        values: 
+                          - on-demand
             containers:
             - name: serverloader
               image: ghcr.io/sabbour/aks-scaling-nap-demo:main
