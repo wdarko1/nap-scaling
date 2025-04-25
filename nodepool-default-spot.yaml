@@ -43,6 +43,7 @@ spec:
         operator: In
         values:
         - spot
+        - on-demand
       - key: karpenter.azure.com/sku-family
         operator: In
         values:
