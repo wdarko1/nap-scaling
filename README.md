@@ -6,7 +6,7 @@
 2. Scaling Up with NAP
 3. Single Node Consolidation
 
-File list
+File list for this demo
 - basic.yaml
 - basic-deploy.yaml
 - singlenode.yaml
@@ -15,28 +15,23 @@ File list
 
 ## Setup
 
-1. Clone the repository locally.
-1. Login using `az login`.
-1. Make sure `kubectl` is installed. You can install using `az aks install-cli`. 
-1. Install `K9s` and `aks-node-viewer`. 
+- Clone the repository locally.
+- Login using `az login`.
+- Make sure `kubectl` is installed. You can install using `az aks install-cli`.
+- Install `K9s` and `aks-node-viewer`. 
 
 
 ### Install Utilities
 
-Use the below command to install `k9s`, and `aks-node-viewer` all used for this workshop to view state changes and deploy of nodes and pods. aks-node-viewer also provides an estimate of cost for provisioned nodes. See the install steps below:
+Use the below command to install [k9s](https://github.com/derailed/k9s), and [aks-node-viewer](https://github.com/Azure/aks-node-viewer) which are used for this workshop to view state changes and deploy of nodes and pods. aks-node-viewer also provides an estimate of cost for provisioned nodes. See the install steps below:
 
-```bash
-cd ~/environment/karpenter/bin
-
+```
 # k9s - terminal UI to interact with the Kubernetes clusters
-wget https://github.com/derailed/k9s/releases/download/v0.32.5/k9s_Linux_amd64.tar.gz -O ~/environment/karpenter/bin/k9s.tar.gz
-tar -xf k9s.tar.gz
+wget https://github.com/derailed/k9s/releases/latest/download/k9s_linux_amd64.deb && apt install ./k9s_linux_amd64.deb && rm k9s_linux_amd64.deb
 
 # aks-node-viewer - used for tracking price, and other metrics of nodes
-wget https://github.com/Azure/aks-node-viewer/releases/download/v0.0.2-alpha/aks-node-viewer_Linux_x86_64 -O ~/environment/karpenter/bin/aks-node-viewer
-chmod +x ~/environment/karpenter/bin/aks-node-viewer
+go install github.com/Azure/aks-node-viewer/cmd/aks-node-viewer@latest
 ```
-
 
 ## Create Demo Cluster with NAP Enabled
 
