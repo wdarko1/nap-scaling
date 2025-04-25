@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: serverloader
+    namespace: test
+spec:
+    selector:
+        matchLabels:
+            app: serverloader
+    template:
+        metadata:
+            labels:
+                app: serverloader
+        spec:
+            containers:
+            - name: serverloader
+              image: ghcr.io/sabbour/aks-scaling-nap-demo:main
+              resources:
+                requests:
+                    cpu: 1000m
+                    memory: 500Mi
+                limits:
+                    cpu: 1000m
+                    memory: 500Mi
+              imagePullPolicy: Always
+              ports:
+              - name: http
+                containerPort: 80
+                protocol: TCP
+              livenessProbe:
+                httpGet:
+                  path: /stats
+                  port: http
+              readinessProbe:
+                httpGet:
+                  path: /stats
+                  port: http
+            nodeSelector:
+              karpenter.sh/nodepool: default-spot
+            tolerations:
+            - key: karpenter.sh/capacity-type
+              operator: Equal
+              value: spot
+              effect: NoSchedule
+            topologySpreadConstraints:
+            - maxSkew: 1
+              topologyKey: topology.kubernetes.io/zone
+              whenUnsatisfiable: ScheduleAnyway
+              labelSelector:
+                matchLabels:
+                  app: serverloader
